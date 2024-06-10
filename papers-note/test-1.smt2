@@ -1,0 +1,10 @@
+(set-logic UFLIA)
+
+(define-fun f ((x Int)) Int (+ x 1))
+        ;(ite (<= x 0) 0 (+ (f (- x 1)) x)))
+(declare-fun k () Int)
+(declare-sort a 0)
+(declare-fun g (a) Int)
+(assert (> (f k) 100))
+(get-model)
+(check-sat)

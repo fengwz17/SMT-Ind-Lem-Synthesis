@@ -1,0 +1,13 @@
+(set-logic UFLIA)
+
+(declare-fun f (Int) Int)
+(declare-fun k () Int)
+(declare-sort a 0)
+(declare-fun g (a) Int)
+(assert (forall ((x a)) 
+            (and (ite (<= (g x) 0) (= (f (g x)) 0)
+                    (= (f (g x)) (+ (f (- (g x) 1)) (g x)))) 
+                 (exists ((z a)) (= (g z) (- (g x) 1))))))
+(assert (and (> (f k) 100) 
+             (exists ((z a)) (= (g z) k))))
+(check-sat)
